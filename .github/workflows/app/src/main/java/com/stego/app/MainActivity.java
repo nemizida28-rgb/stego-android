@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 ContentValues cv = new ContentValues();
                 cv.put(MediaStore.Downloads.DISPLAY_NAME, filename);
                 cv.put(MediaStore.Downloads.MIME_TYPE, "application/octet-stream");
-                Uri uri = getContentResolver().insert(MediaStore.Downloads.CONTENT_URI, cv);
+                Uri uri = getContentResolver().insert(Uri.parse("content://media/external/downloads"), cv);
                 OutputStream os = getContentResolver().openOutputStream(uri);
                 os.write(bytes); os.close();
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "Збережено: " + filename, Toast.LENGTH_SHORT).show());
